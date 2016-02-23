@@ -1,6 +1,9 @@
 import math
 import numpy
+
 col_log = {}		# initialize collision log
+
+# run dictionary-filling function three times
 for j in [1,2,3]:
 
     
@@ -17,8 +20,10 @@ for j in [1,2,3]:
 # this function calculates distance to particle collision
 # inputs: collision_location, particle_position
 # outputs: distance to collision, unit vector of particle direction
+
     def collision(Particle_ID,collision_location,particle_position,energy,reaction_code,atomic_code):
         distance_prev = 0
+
         for i in range(0,len(collision_location)):
             dr.append( collision_location[i] - particle_position[i])
             distance_prev = distance_prev +  math.sqrt(dr[i]*dr[i])
@@ -27,10 +32,11 @@ for j in [1,2,3]:
         energy = energy*1000000
         Event_Log = {"Particle ID":Particle_ID,"Collision Location":collision_location,"distance to collision": distance_prev,"particle direction":direction,"energy":energy,"Reaction Code": reaction_code,"Target Atom Composition Code":atomic_code}
         return Event_Log
+
     Event_Log = collision(Particle_ID,collision_location,particle_position,energy,reaction_code,atomic_code)
     
-
     col_log.update({Event_number:Event_Log})
+
 print(col_log)
 
 
@@ -67,7 +73,7 @@ print(col_log)
 #        return distance
 
 
-## This code determines which event is closer aligned to the z-axis
+## This example code determines which event is closer aligned to the z-axis
 
 direction9 = [1,1,1]
 valdirect9 = math.sqrt(numpy.sum(numpy.square(direction9)))
